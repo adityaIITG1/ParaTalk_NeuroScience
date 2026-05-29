@@ -40,6 +40,7 @@ type Message = {
 type SerialPortLike = {
   open: (options: { baudRate: number }) => Promise<void>;
   writable: WritableStream<Uint8Array>;
+  readable: ReadableStream<Uint8Array>;
 };
 
 type NavigatorWithSerial = Navigator & {
