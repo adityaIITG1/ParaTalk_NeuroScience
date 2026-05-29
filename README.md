@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/assets/debuggers-squad-logo.png" alt="Debuggers Squad Logo" width="150" />
+  <!-- TODO: Drag and drop your Debuggers Squad logo here on GitHub to show the image -->
 
   # 🧠 ParaTalk: Advanced EOG-Based Communication System
   
@@ -33,9 +33,9 @@
 
 | Care Mode | Normal Talk |
 | :---: | :---: |
-| <img src="./public/assets/care-mode.png" alt="Care Mode" width="400" /> | <img src="./public/assets/talk-mode.png" alt="Talk Mode" width="400" /> |
+| *(Image coming soon)* | *(Image coming soon)* |
 | **Games Hub** | **Electrode Setup** |
-| <img src="./public/assets/games-mode.png" alt="Games Mode" width="400" /> | <img src="./public/assets/electrode-setup.png" alt="Electrode Setup" width="400" /> |
+| *(Image coming soon)* | *(Image coming soon)* |
 
 ---
 
