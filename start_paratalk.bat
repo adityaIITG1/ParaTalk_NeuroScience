@@ -2,6 +2,8 @@
 title ParaTalk Server
 echo =========================================
 echo Starting ParaTalk EOG System...
+echo Cleaning up old background servers...
+taskkill /F /IM node.exe > NUL 2>&1
 echo Please leave this window open while using the app!
 echo =========================================
 cd /d "c:\Users\ASUS\OneDrive\Desktop\Para_Talk"
