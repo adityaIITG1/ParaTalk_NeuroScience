@@ -338,6 +338,7 @@ export default function GameEngine({ game, onClose }: GameEngineProps) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown, { capture: true });
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game]);
 
   return (

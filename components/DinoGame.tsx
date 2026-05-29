@@ -336,6 +336,7 @@ export default function DinoGame({ onClose }: DinoGameProps) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown, { capture: true });
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
