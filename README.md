@@ -1,116 +1,77 @@
-# Para Talk
+<div align="center">
+  <img src="./public/assets/debuggers-squad-logo.png" alt="Debuggers Squad Logo" width="150" />
 
-Para Talk is a Next.js communication board for single-switch or EOG users. It can be deployed to Vercel, speaks selected messages in the browser, starts a built-in Dino game, and sends a serial relay command to the user's own Arduino.
+  # 🧠 ParaTalk: Advanced EOG-Based Communication System
+  
+  **Empowering paralyzed patients to communicate, play, and connect through simple eye blinks.**
+  
+  [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+  [![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)](https://react.dev/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+  [![Framer Motion](https://img.shields.io/badge/Framer_Motion-purple?style=for-the-badge&logo=framer)](https://www.framer.com/motion/)
+  [![Web Serial API](https://img.shields.io/badge/Web_Serial-API-yellow?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API)
+</div>
 
-## Local Development
+<br />
 
+> **ParaTalk** is a highly aesthetic, life-changing web application designed specifically for patients suffering from total paralysis or locked-in syndrome. By utilizing **Electrooculography (EOG)** via a BioAmp EXG Pill, patients can control the entire interface using just their eye blinks.
+
+---
+
+## ✨ Features
+
+- 🏥 **Care Mode:** Quickly request water, food, bathroom assistance, or alert caregivers to pain/emergencies.
+- 💬 **Normal Talk:** A dynamic phrase board for everyday conversational responses and emotional expression.
+- 🎮 **Entertainment Hub:** 8 integrated, single-button spacebar games (like Dino Run and Flappy Bird) fully playable via eye-blinks.
+- 🌐 **Multilingual Text-to-Speech:** Native TTS support in multiple Indian languages (English, Hindi, Bengali, Marathi, Tamil, etc.).
+- 🔌 **Direct Arduino Integration:** Connect your EOG Arduino directly to the browser via the Web Serial API—no external middleware required!
+- ⚡ **Relay Control:** Trigger physical hardware (like calling a caregiver's buzzer) directly from the dashboard.
+
+---
+
+## 📸 Interface Previews
+
+| Care Mode | Normal Talk |
+| :---: | :---: |
+| <img src="./public/assets/care-mode.png" alt="Care Mode" width="400" /> | <img src="./public/assets/talk-mode.png" alt="Talk Mode" width="400" /> |
+| **Games Hub** | **Electrode Setup** |
+| <img src="./public/assets/games-mode.png" alt="Games Mode" width="400" /> | <img src="./public/assets/electrode-setup.png" alt="Electrode Setup" width="400" /> |
+
+---
+
+## 🛠️ Hardware Setup (BioAmp EXG Pill)
+
+ParaTalk integrates perfectly with the **BioAmp EXG Pill** to read vertical eye movements (blinks). 
+
+**Electrode Placement:**
+1. 🔴 **Red (IN-):** Below the right eye.
+2. ⚫ **Black (IN+):** Above the right eye.
+3. 🟡 **Yellow (REF):** Behind the right ear (Mastoid bone).
+
+Connect your Arduino via USB, click **"Connect EOG Arduino"** in the top navigation bar, and the dashboard will automatically listen for `BLINK` serial commands at `115200` baud.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/adityaIITG1/ParaTalk_NeuroScience.git
+cd ParaTalk_NeuroScience
+```
+
+### 2. Install Dependencies
 ```bash
 npm install
+```
+
+### 3. Run the Development Server
+```bash
 npm run dev
 ```
+Open [http://localhost:3000](http://localhost:3000) in your browser. *(Note: For the best experience, use a Chromium-based browser like Chrome or Edge to utilize the Web Serial API).*
 
-Open:
+---
 
-```text
-http://localhost:3000
-```
-
-## Reliable Girl Voice for Indian Languages
-
-Browser speech voices are limited by the user's laptop/browser. If Bengali, Tamil, Marathi, Telugu, or other languages are missing, Chrome or Edge falls back to English or Hindi.
-
-For reliable female Indian neural voices, configure Azure Speech:
-
-```bash
-copy .env.example .env.local
-```
-
-Then set:
-
-```text
-AZURE_SPEECH_KEY=your_azure_speech_key_here
-AZURE_SPEECH_REGION=centralindia
-```
-
-Restart the app after changing `.env.local`.
-
-When Azure Speech is configured, Para Talk uses female neural voices where available, including Hindi Swara, Bengali Tanishaa, Tamil Pallavi, Telugu Shruti, Marathi Aarohi, Gujarati Dhwani, Kannada Sapna, Malayalam Sobhana, Nepali Hemkala, and Urdu Uzma. Punjabi is available in Azure but currently does not have a female `pa-IN` voice in the voice map, so the app falls back to browser speech for Punjabi.
-
-## Deploy on Vercel
-
-1. Push this folder to a GitHub repository.
-2. Import the repository in Vercel.
-3. Use the default Next.js settings.
-4. Deploy.
-
-Web Serial works on secure origins, so a Vercel `https://` deployment can connect to an Arduino plugged into the user's computer. Users should open the app in desktop Chrome or Edge.
-
-## User Controls
-
-- Press `Space` once to move to the next communication box.
-- Stop pressing `Space` for about 2 seconds to select the highlighted box.
-- The selected message is spoken by the browser.
-- Mouse or touch clicks also select a box directly.
-- Selecting `Play game` opens the built-in Dino game. In game mode, `Space` jumps.
-- Use `Care` for needs and health messages.
-- Use `Normal Talk` when friends or family visit. It includes phrases like `How are you?`, `What are you doing?`, and `How is your day going?`.
-- Use the `Voice` selector to choose Indian language speech, including English India, Hindi, Bengali, Tamil, Telugu, Marathi, Gujarati, Kannada, Malayalam, Punjabi, Urdu, Odia, Assamese, Nepali, and more.
-
-## Two Arduino Setup
-
-Use two separate Arduino boards:
-
-- Arduino 1: EOG controller. Upload [arduino/eog_keyboard/eog_keyboard.ino](arduino/eog_keyboard/eog_keyboard.ino) to this board. It converts eye blinks into the `Space` key.
-- Arduino 2: Relay receiver. Upload [arduino/relay_receiver/relay_receiver.ino](arduino/relay_receiver/relay_receiver.ino) to this board.
-
-The EOG Arduino does not need to connect to the app through Web Serial. It behaves like a keyboard. The relay Arduino must be selected in the app after clicking `Connect relay`.
-
-## EOG Keyboard Setup
-
-The EOG keyboard sketch is for Arduino UNO R4 Minima or UNO R4 WiFi because it uses `Keyboard.h` USB HID support.
-
-Default EOG input:
-
-```text
-EOG signal -> Arduino A0
-GND        -> Arduino GND
-```
-
-Upload the sketch, then click inside the Para Talk browser page. Every detected blink sends one `Space` key press. The app uses that `Space` key to move through boxes, and in game mode it jumps.
-
-If blinking does not trigger, or triggers too often, tune these values in the EOG sketch:
-
-```cpp
-const int BlinkLowerThreshold = 30;
-const int BlinkUpperThreshold = 50;
-```
-
-## Relay Setup
-
-The `Call caretaker` box sends this serial command to the connected Arduino:
-
-```text
-RELAY_ON
-```
-
-Wire the relay module signal pin to Arduino pin `7` by default:
-
-```text
-Relay VCC  -> Arduino 5V
-Relay GND  -> Arduino GND
-Relay IN   -> Arduino D7
-```
-
-If your relay turns on immediately and turns off when called, open the sketch and change:
-
-```cpp
-const bool RELAY_ACTIVE_LOW = false;
-```
-
-to:
-
-```cpp
-const bool RELAY_ACTIVE_LOW = true;
-```
-
-In the app, click `Connect relay`, choose the Arduino port, then select `Call caretaker`.
+## 👨‍💻 Built By
+Designed and developed with ❤️ by the **Debuggers Squad**.
